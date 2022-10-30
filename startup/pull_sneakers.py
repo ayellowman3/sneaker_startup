@@ -10,7 +10,7 @@ def main():
     setup()
     sneaker_data = get_sneaker_data()
     download_sneaker_img(sneaker_data)
-    dict_to_json_file('sneakers/data/sneakers.json',sneaker_data)
+    dict_to_json_file(f'sneakers{os.sep}data{os.sep}sneakers.json',sneaker_data)
 
 def get_sneaker_data():
     sneaker_data = {'sneakers':[]}
@@ -25,8 +25,8 @@ def download_sneaker_img(sneaker_data):
     for sneaker in sneaker_data['sneakers']:
         print(sneaker['imageUrl'])
         sneaker['imageFile'] = sneaker['imageUrl'].split('/')[-1]
-        if os.path.exists('sneakers/img/' + sneaker['imageFile']) == False:
-            with open('sneakers/img/' + sneaker['imageFile'], 'wb') as f:
+        if os.path.exists(f'sneakers{os.sep}img{os.sep}' + sneaker['imageFile']) == False:
+            with open(f'sneakers{os.sep}img{os.sep}' + sneaker['imageFile'], 'wb') as f:
                 im = requests.get(sneaker['imageUrl'])
                 f.write(im.content)
             time.sleep(1)
@@ -41,7 +41,7 @@ def create_path(path):
         os.mkdir(path)
 
 def setup():
-    paths = ['sneakers/', 'sneakers/img/', 'sneakers/data/']
+    paths = [f'sneakers{os.sep}', f'sneakers{os.sep}img{os.sep}', f'sneakers{os.sep}data{os.sep}']
     for path in paths:
         create_path(path)
 
