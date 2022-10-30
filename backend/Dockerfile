@@ -1,7 +1,11 @@
 FROM python:3.8
 
-ADD customerapi.py .
+WORKDIR /fastapi-app
 
-RUN pip install requests beautifulsoup4
+COPY requirements.txt .
 
-CMD [ "python", "./main.py"]
+RUN pip install -r requirements.txt
+
+COPY ./app ./app
+
+CMD [ "python", "./customerapi.py"]
