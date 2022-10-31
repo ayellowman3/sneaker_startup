@@ -7,5 +7,5 @@ pull_sneakers.main()
 
 
 #cd Documents\Coding\sneakers_startup
-os.system("docker build -t customerapi")
+os.system(f"docker build . -t customerapi -f backend/Dockerfile")
 os.system("docker run -p 8000:8000 customerapi")
