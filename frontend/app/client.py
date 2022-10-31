@@ -26,7 +26,7 @@ class requestHandler(BaseHTTPRequestHandler):
 
 def main():
     PORT = 9000
-    server_address = ('', PORT)
+    server_address = ('127.0.0.1', PORT)
     server = HTTPServer(server_address, requestHandler)
     print('Server running on port %s' % PORT)
     server.serve_forever()
