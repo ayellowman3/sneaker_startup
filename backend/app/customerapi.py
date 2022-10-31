@@ -1,34 +1,14 @@
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from typing import Optional
 
-class requestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('content-type', 'text/html')
-        self.end_headers()
-        output = ''
-        output += '<html><body>'
-        output += '<p>Not added to cart</p>'
-        output += '</body></html>'
-        self.wfile.write(output.encode())
+from fastapi import FastAPI
+import uvicorn
+
+app = FastAPI()
 
 
-    def do_POST(self):
-        if self.path.endswith('/cart'):
-            self.send_response(200)
-            self.send_header('content-type', 'text/html')
-            self.end_headers()
-            output = ''
-            output += '<html><body>'
-            output += '<p>Added to cart</p>'
-            output += '</body></html>'
-
-
-def main():
-    PORT = 8000
-    server_address = ('', PORT)
-    server = HTTPServer(server_address, requestHandler)
-    print('Server running on port %s' % PORT)
-    server.serve_forever()
+@app.get("/cart")
+def read_root():
+    return {"Hello": "World"}
 
 if __name__ == '__main__':
-    main()
+    uvicorn.run(app, port=8000, host="127.0.0.1")

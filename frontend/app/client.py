@@ -10,7 +10,7 @@ class requestHandler(BaseHTTPRequestHandler):
 
         output = ''
         output += '<html><body>'
-        output += '<a href="0.0.0.0:8000">link text</a>'
+        output += '<a href="127.0.0.1:8000">link text</a>'
         output += '<div class="grid-container" style="display: grid; grid-gap: 20px; grid-template-columns: auto auto auto auto;">'
         f = open(f'sneakers{os.sep}data{os.sep}sneakers.json')
         data = json.load(f)
