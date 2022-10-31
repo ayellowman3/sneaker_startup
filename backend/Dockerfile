@@ -6,6 +6,6 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY backend/app /app
+COPY /backend/app /app
 
 CMD [ "python", "/app/customerapi.py"]
