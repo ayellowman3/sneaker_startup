@@ -9,18 +9,29 @@ class requestHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
         output = ''
-        output += '<html><body>'
-        output += '<a href="127.0.0.1:8000">link text</a>'
-        output += '<div class="grid-container" style="display: grid; grid-gap: 20px; grid-template-columns: auto auto auto auto;">'
+        output += '<html><body>\n'
+        output += '<a href="127.0.0.1:8000">link text</a>\n'
+        output += '<div class="grid-container" style="display: grid; grid-gap: 20px; grid-template-columns: auto auto auto auto;">\n'
         f = open(f'sneakers{os.sep}data{os.sep}sneakers.json')
         data = json.load(f)
+        counter = 0
         for sneaker in data['sneakers']:
-            output += '<div class="grid-item" style="height: auto; width: 250px;" >'
-            output += f'<img alt="{sneaker["name"]}" src="{sneaker["imageUrl"]}" style="width: 204px; height: 145px;">'
-            output += f'<p>{sneaker}</p>'
-            output += '</div>'
+            output += '<div class="grid-item" style="height: auto; width: 250px;" >\n'
+            output += f'<img alt="sneakers" src="{sneaker["imageUrl"]}" style="width: 204px; height: 145px;">\n'
+            output += f'<p>{sneaker}</p>\n'
+            output += f'<p id="{sneaker["name"]}" onclick="myFunction' + str(counter) + '()">Click me.</p>\n'
+            output += '<script>\n'
+            output += 'function myFunction' + str(counter) + '() {\n'
+            counter += 1
+            output += f'fetch("0.0.0.0:8000/sneakers/{sneaker["name"]}")\n'
+            output += '.then(res => res.json())\n'
+            output += '.then(data => console.log(data))\n'
+            output += f'document.getElementById("{sneaker["name"]}").innerHTML = "{sneaker["name"]}";\n'
+            output += '}\n'
+            output += '</script>\n'
+            output += '</div>\n'
         f.close()
-        output += '</div>'
+        output += '</div>\n'
         output += '</body></html>'
         self.wfile.write(output.encode())
 
