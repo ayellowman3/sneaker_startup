@@ -6,6 +6,8 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY ./app /app
+COPY /app /app
+
+RUN touch cart.txt
 
 CMD [ "python", "/app/customerapi.py"]
