@@ -2,6 +2,7 @@ import os
 os.system("pip install requests")
 os.system("pip install fastapi")
 os.system("pip install uvicorn")
+os.system("docker pull nginx")
 from startup import pull_sneakers
 pull_sneakers.main()
 

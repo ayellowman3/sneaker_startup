@@ -11,6 +11,7 @@ def main():
     sneaker_data = get_sneaker_data()
     download_sneaker_img(sneaker_data)
     dict_to_json_file(f'sneakers{os.sep}data{os.sep}sneakers.json',sneaker_data)
+    os.system("cp -R sneakers/ frontend/app/sneakers/")
 
 def get_sneaker_data():
     sneaker_data = {'sneakers':[]}
@@ -41,7 +42,7 @@ def create_path(path):
         os.mkdir(path)
 
 def setup():
-    paths = [f'sneakers{os.sep}', f'sneakers{os.sep}img{os.sep}', f'sneakers{os.sep}data{os.sep}']
+    paths = [f'sneakers{os.sep}', f'sneakers{os.sep}img{os.sep}', f'sneakers{os.sep}data{os.sep}',f'frontend{os.sep}app{os.sep}sneakers{os.sep}', f'frontend{os.sep}app{os.sep}sneakers{os.sep}data{os.sep}', f'frontend{os.sep}app{os.sep}sneakers{os.sep}img{os.sep}']
     for path in paths:
         create_path(path)
 

@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 
 COPY ./app /app
 
-CMD [ "python", "/app/client.py"]
+CMD [ "python3", "/app/client.py"]
