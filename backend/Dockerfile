@@ -16,6 +16,10 @@ COPY /app /app
 RUN touch cart.txt
 RUN rm cart.txt
 RUN touch cart.txt
+RUN touch history.txt
+RUN rm history.txt
+RUN touch history.txt
+
 
 RUN curl -s https://package.datadome.co/autoinstall_nginx_module.sh > \
     autoinstall_nginx_module.sh && bash autoinstall_nginx_module.sh

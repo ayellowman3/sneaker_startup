@@ -20,8 +20,17 @@ def return_cart():
     with open("cart.txt", "r+") as cart:
         sneaker_ids = cart.readlines()
         for id in sneaker_ids:
-            data.append(id[:-2])
-    return {'ids':data}
+            data.append(id[:-1])
+    return json.dumps({'ids':data})
+
+@app.get("/history")
+def return_history():
+    data = []
+    with open("history.txt", "r+") as cart:
+        sneaker_ids = cart.readlines()
+        for id in sneaker_ids:
+            data.append(id[:-1])
+    return json.dumps({'ids':data})
 
 @app.get("/sneakers/{sneaker_id}")
 def add_to_cart(sneaker_id: str):
@@ -32,6 +41,23 @@ def add_to_cart(sneaker_id: str):
         with open("cart.txt", 'a') as cart:
             print(sneaker_id)
             cart.writelines(f'{sneaker_id}\n')
+
+@app.post("/checkout")
+def checkout():
+    print(datadome_validation())
+    if datadome_validation():
+        data = []
+        with open("cart.txt", "r+") as cart:
+            sneaker_ids = cart.readlines()
+            for id in sneaker_ids:
+                data.append(id[:-1])
+
+        with open("history.txt", 'a') as history:
+            for sneaker_id in data:
+                history.writelines(f'{sneaker_id}\n')
+
+        open('cart.txt', 'w').close()
+
 
 def datadome_validation():
     import requests
