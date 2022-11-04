@@ -19,8 +19,8 @@ def do_homepage(self):
 
     output = ''
     output += '<html><body>\n'
-    output += '<a href="http://0.0.0.0:9000/cart">cart</a>'
-    output += '<a href="http://0.0.0.0:9000/history">cart</a>'
+    output += '<a href="http://0.0.0.0:9000/cart">cart </a>'
+    output += '<a href="http://0.0.0.0:9000/history">history </a>'
     output += '<div class="grid-container" style="display: grid; grid-gap: 20px; grid-template-columns: auto auto auto auto;">\n'
 
     url = 'http://backend:8000/history'
@@ -105,8 +105,8 @@ def do_history(self):
     output = ''
     output += '<html><body>\n'
     output += '<p>Order History</p>'
-    output += '<a href="http://0.0.0.0:9000/">home</a>'
-    output += '<a href="http://0.0.0.0:9000/cart">cart</a>'
+    output += '<a href="http://0.0.0.0:9000/">home </a>'
+    output += '<a href="http://0.0.0.0:9000/cart">cart </a>'
     output += '<div class="grid-container" style="display: grid; grid-gap: 20px; grid-template-columns: auto auto auto auto;">\n'
 
     url = 'http://backend:8000/history'
@@ -125,7 +125,7 @@ def do_history(self):
             output += '</div>\n'
 
     f.close()
-    
+
     output += '</div>\n'
     output += '</body></html>'
     self.wfile.write(output.encode())
